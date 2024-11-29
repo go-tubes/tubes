@@ -1,14 +1,14 @@
 package main
 
 import (
+	"github.com/mono424/tubes"
+	tubes_connector "github.com/mono424/tubes/connector"
 	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
 
 	"github.com/gorilla/websocket"
-	"github.com/mono424/go-pts"
-	gorilla "github.com/mono424/tube-gorilla-connector"
 )
 
 func main() {
@@ -19,29 +19,29 @@ func main() {
 
 	r := gin.Default()
 
-	r.Static("js/", "html/node_modules/go-pts-client/dist/")
+	r.Static("js/", "html/node_modules/go-tubes-client/dist/")
 	r.LoadHTMLGlob("html/*.html")
 
-	tubeSystem := pts.New(gorilla.NewConnector(
+	tubeSystem := tubes.New(tubes_connector.NewGorillaConnector(
 		websocket.Upgrader{
 			CheckOrigin: func(r *http.Request) bool {
 				return true
 			},
 		},
-		func(err *pts.Error) {
+		func(err *tubes.Error) {
 			println(err.Description)
 		},
 	))
 
-	tubeSystem.RegisterChannel("echo", pts.ChannelHandlers{
-		OnSubscribe: func(s *pts.Context) {
+	tubeSystem.RegisterChannel("echo", tubes.ChannelHandlers{
+		OnSubscribe: func(s *tubes.Context) {
 			println("Client joined: " + s.FullPath)
 		},
-		OnMessage: func(s *pts.Context, message *pts.Message) {
+		OnMessage: func(s *tubes.Context, message *tubes.Message) {
 			println("New Message on " + s.FullPath + ": " + string(message.Payload))
 			s.Send(message.Payload)
 		},
-		OnUnsubscribe: func(s *pts.Context) {
+		OnUnsubscribe: func(s *tubes.Context) {
 			println("Client left: " + s.FullPath)
 		},
 	})

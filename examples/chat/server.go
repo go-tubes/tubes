@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/mono424/tubes"
 	tubes_connector "github.com/mono424/tubes/connector"
 	"net/http"
 	"os"
@@ -21,13 +22,13 @@ func main() {
 	r.Static("js/", "html/node_modules/go-pts-client/dist/")
 	r.LoadHTMLGlob("html/*.html")
 
-	tubeSystem := pts.New(tubes_connector.NewGorillaConnector(
+	tubeSystem := tubes.New(tubes_connector.NewGorillaConnector(
 		websocket.Upgrader{
 			CheckOrigin: func(r *http.Request) bool {
 				return true
 			},
 		},
-		func(err *pts.Error) {
+		func(err *tubes.Error) {
 			println(err.Description)
 		},
 	))

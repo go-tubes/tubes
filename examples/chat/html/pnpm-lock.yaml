@@ -5,12 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  go-pts-client:
-    specifier: ^0.0.7
-    version: 0.0.7
+  '@go-tubes/tubes-js':
+    specifier: ^0.0.2
+    version: 0.0.2
 
 packages:
 
-  /go-pts-client@0.0.7:
-    resolution: {integrity: sha512-F7foI6fn7OmJ6Sb8I/gfz7Yey9S0zL17NiNlIMuzj4MLuKOczCbmYPVOxqFnAp/6Qn17SjTtV8rYLPM0TPNKPA==}
+  /@go-tubes/tubes-js@0.0.2:
+    resolution: {integrity: sha512-00DZKWNLcCN6zDI6f8R+BLuTbpRERN+hs+4OcsYtuJ5Y8oxKelXx+/BkOGljZreIAO9Q5rO8K1UIRwViqURVAg==}
     dev: false

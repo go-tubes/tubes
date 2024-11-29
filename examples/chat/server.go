@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/go-tubes/tubes"
-	tubes_connector "github.com/go-tubes/tubes/connector"
 	"net/http"
 	"os"
+
+	"github.com/go-tubes/tubes"
+	tubes_connector "github.com/go-tubes/tubes/connector"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-tubes/tubes/examples/chat/chat"
@@ -19,7 +20,7 @@ func main() {
 
 	r := gin.Default()
 
-	r.Static("js/", "html/node_modules/go-pts-client/dist/")
+	r.Static("js/", "html/node_modules/@go-tubes/tubes-js/dist/")
 	r.LoadHTMLGlob("html/*.html")
 
 	tubeSystem := tubes.New(tubes_connector.NewGorillaConnector(

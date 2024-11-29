@@ -42,7 +42,10 @@ func (c *Channel) PathMatches(path string) (bool, map[string]string) {
 		return false, nil
 	}
 
-	for i, s := range parts[1:] {
+	// First item is always empty
+	parts = parts[1:]
+
+	for i, s := range parts {
 		if s == "" { // Disallow empty path parts
 			return false, nil
 		}

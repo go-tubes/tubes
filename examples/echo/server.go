@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/mono424/tubes"
-	tubes_connector "github.com/mono424/tubes/connector"
+	"github.com/go-tubes/tubes"
+	tubes_connector "github.com/go-tubes/tubes/connector"
 	"net/http"
 	"os"
 

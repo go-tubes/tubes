@@ -2,8 +2,8 @@ package tubes_connector
 
 import (
 	"fmt"
+	"github.com/go-tubes/tubes"
 	"github.com/gorilla/websocket"
-	"github.com/mono424/tubes"
 	"net/http"
 	"sync"
 )

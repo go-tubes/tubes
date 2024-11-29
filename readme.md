@@ -17,7 +17,7 @@ tubes is a flexible package for managing Pub-Sub over WebSockets in Go. It offer
 1. Get the `tubes` package using the following command:
 
 ```shell
-go get github.com/mono424/tubes
+go get github.com/go-tubes/tubes
 ```
 
 ## Client Libraries
@@ -26,8 +26,8 @@ For client-side integration, you can use one of the following client libraries:
 
 | Language | URL |
 | -------- | --- |
-| JavaScript | [tubes-client-js](https://github.com/mono424/tube-client-js) |
-| Dart | [tubes-client-dart](https://github.com/mono424/tube-client-dart) |
+| JavaScript | ✅ |
+| Dart | ✅ |
 
 ## Connectors
 

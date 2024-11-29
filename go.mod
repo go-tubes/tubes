@@ -1,4 +1,4 @@
-module github.com/mono424/tubes
+module github.com/go-tubes/tubes
 
 go 1.18
 

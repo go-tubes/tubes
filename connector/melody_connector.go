@@ -1,7 +1,7 @@
 package tubes_connector
 
 import (
-	"github.com/mono424/tubes"
+	"github.com/go-tubes/tubes"
 	"github.com/olahol/melody"
 	"net/http"
 )

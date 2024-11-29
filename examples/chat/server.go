@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/mono424/tubes"
-	tubes_connector "github.com/mono424/tubes/connector"
+	"github.com/go-tubes/tubes"
+	tubes_connector "github.com/go-tubes/tubes/connector"
 	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-tubes/tubes/examples/chat/chat"
 	"github.com/gorilla/websocket"
-	"github.com/mono424/tubes/examples/chat/chat"
 )
 
 func main() {

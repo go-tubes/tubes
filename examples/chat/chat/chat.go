@@ -3,7 +3,7 @@ package chat
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/mono424/tubes"
+	"github.com/go-tubes/tubes"
 )
 
 type Chat struct {

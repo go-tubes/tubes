@@ -38,11 +38,11 @@ func (c *Channel) PathMatches(path string) (bool, map[string]string) {
 	params := map[string]string{}
 	parts := strings.Split(strings.TrimRight(path, channelPathSep), channelPathSep)
 
-	if len(c.path) != len(parts) {
+	if len(c.path) != len(parts) || len(parts) < 2 {
 		return false, nil
 	}
 
-	for i, s := range parts {
+	for i, s := range parts[1:] {
 		if s == "" { // Disallow empty path parts
 			return false, nil
 		}

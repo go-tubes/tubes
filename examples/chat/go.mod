@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.8.1
-	github.com/go-tubes/tubes v0.0.0-20241129175541-d41d960f155a
+	github.com/go-tubes/tubes v0.0.1
 	github.com/gorilla/websocket v1.5.0
 )
 

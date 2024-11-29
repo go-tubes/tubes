@@ -1,6 +1,6 @@
 <h1 align="center">
   <img src="https://raw.githubusercontent.com/mono424/tubes/images/logo.png"><br>
-  Go (Pneumatic) Tube System
+  Tubes
 </h1>
 
 

@@ -24,10 +24,10 @@ go get github.com/go-tubes/tubes
 
 For client-side integration, you can use one of the following client libraries:
 
-| Language | URL |
-| -------- | --- |
-| JavaScript | ✅ |
-| Dart | ✅ |
+| Language | URL                                              |
+| -------- |--------------------------------------------------|
+| JavaScript | [GitHub](https://github.com/go-tubes/tubes-js)   |
+| Dart | [GitHub](https://github.com/go-tubes/tubes-dart) |
 
 ## Connectors
 

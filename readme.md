@@ -4,9 +4,9 @@
 </h1>
 
 
-[![Run Tests](https://github.com/mono424/tube/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/mono424/tube/actions/workflows/run-tests.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mono424/tube)](https://goreportcard.com/report/github.com/mono424/tube)
-[![codecov](https://codecov.io/gh/mono424/tubes/branch/main/graph/badge.svg?token=9VA6CYDXAZ)](https://codecov.io/gh/mono424/tubes)
+[![Run Tests](https://github.com/go-tubes/tubes/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/go-tubes/tubes/actions/workflows/run-tests.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/go-tubes/tubes)](https://goreportcard.com/report/github.com/go-tubes/tubes)
+[![codecov](https://codecov.io/gh/go-tubes/tubes/branch/main/graph/badge.svg?token=9VA6CYDXAZ)](https://codecov.io/gh/go-tubes/tubes)
 
 tubes is a flexible package for managing Pub-Sub over WebSockets in Go. It offers a rest-style syntax and easily integrates with various websocket and http frameworks.
 

@@ -19,7 +19,7 @@ func main() {
 
 	r := gin.Default()
 
-	r.Static("js/", "html/node_modules/go-tubes-client/dist/")
+	r.Static("js/", "html/node_modules/@go-tubes/tubes-js/dist/")
 	r.LoadHTMLGlob("html/*.html")
 
 	tubeSystem := tubes.New(tubes_connector.NewGorillaConnector(
@@ -33,7 +33,7 @@ func main() {
 		},
 	))
 
-	tubeSystem.RegisterChannel("echo", tubes.ChannelHandlers{
+	tubeSystem.RegisterChannel("/echo", tubes.ChannelHandlers{
 		OnSubscribe: func(s *tubes.Context) {
 			println("Client joined: " + s.FullPath)
 		},

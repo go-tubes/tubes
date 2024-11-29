@@ -4,8 +4,8 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.8.1
+	github.com/go-tubes/tubes v0.0.6
 	github.com/gorilla/websocket v1.5.0
-	github.com/go-tubes/tubes v0.0.0-20241129161250-c8a26ec236a8
 )
 
 require (

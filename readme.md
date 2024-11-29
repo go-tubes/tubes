@@ -82,7 +82,7 @@ r.GET("/connect", func(c *gin.Context) {
 
 4. Connect from a frontend lib
 ```javascript
-const client = new GotubesClient({ url: socketUrl, debugging: true })
+const client = new TubesClient({ url: socketUrl, debugging: true })
 client.subscribeChannel("test", console.log);
 client.send("test", { payload: { foo: "bar" } })
 ```

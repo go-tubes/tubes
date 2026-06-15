@@ -14,6 +14,7 @@ type Connector struct {
 	errorHandler   ErrorHandlerFunc
 	clients        ClientStore
 	hooks          *Hooks
+	binary         bool
 }
 
 type Hooks struct {
@@ -65,4 +66,16 @@ func (c *Connector) error(err *Error) {
 
 func (c *Connector) hook(hooks *Hooks) {
 	c.hooks = hooks
+}
+
+// setBinary records whether the active codec produces binary frames. It is set
+// by TubeSystem.New from the configured Codec.
+func (c *Connector) setBinary(binary bool) {
+	c.binary = binary
+}
+
+// Binary reports whether outgoing frames should be sent as binary WebSocket
+// frames. Connector implementations consult this when writing to the socket.
+func (c *Connector) Binary() bool {
+	return c.binary
 }

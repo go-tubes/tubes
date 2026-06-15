@@ -20,14 +20,26 @@ type Message struct {
 type TubeSystem struct {
 	connector *Connector
 	channels  ChannelStore
+	codec     Codec
 }
 
-// New Creates a new TubeSystem instance
-func New(connector *Connector) *TubeSystem {
-	r := TubeSystem{}
+// New Creates a new TubeSystem instance. By default the envelope is encoded as
+// JSON over text frames; pass WithCodec to select a different Codec (e.g. the
+// protobuf codec for binary frames).
+func New(connector *Connector, opts ...Option) *TubeSystem {
+	r := TubeSystem{
+		codec: JSONCodec{},
+	}
+	for _, opt := range opts {
+		opt(&r)
+	}
+	if r.codec == nil {
+		r.codec = JSONCodec{}
+	}
 
 	r.connector = connector
-	r.channels.init(connector.error)
+	r.connector.setBinary(r.codec.Binary())
+	r.channels.init(connector.error, r.codec)
 	r.connector.hook(&Hooks{
 		OnConnect:    r.connectHandler,
 		OnDisconnect: r.disconnectHandler,
@@ -106,7 +118,7 @@ func (r *TubeSystem) disconnectHandler(c *Client) {
 // messageHandler handles a new client message
 func (r *TubeSystem) messageHandler(c *Client, msg []byte) {
 	var req Message
-	err := json.Unmarshal(msg, &req)
+	err := r.codec.Unmarshal(msg, &req)
 	if err != nil {
 		r.connector.error(NewError(nil, ErrorInvalidMessage, "invalid message received", err))
 		return

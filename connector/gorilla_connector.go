@@ -23,7 +23,11 @@ func NewGorillaConnector(upgrader websocket.Upgrader, errorHandler tubes.ErrorHa
 				func(message []byte) error {
 					mutex.Lock()
 					defer mutex.Unlock()
-					return conn.WriteMessage(websocket.TextMessage, message)
+					frameType := websocket.TextMessage
+					if connector.Binary() {
+						frameType = websocket.BinaryMessage
+					}
+					return conn.WriteMessage(frameType, message)
 				},
 				properties,
 			)

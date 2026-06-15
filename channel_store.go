@@ -8,6 +8,7 @@ import (
 type ChannelStore struct {
 	channels     map[string]*Channel
 	errorHandler ErrorHandlerFunc
+	codec        Codec
 }
 
 type ChannelMatch struct {
@@ -15,9 +16,13 @@ type ChannelMatch struct {
 	Params  map[string]string
 }
 
-func (s *ChannelStore) init(errorHandler ErrorHandlerFunc) {
+func (s *ChannelStore) init(errorHandler ErrorHandlerFunc, codec Codec) {
 	s.channels = map[string]*Channel{}
 	s.errorHandler = errorHandler
+	if codec == nil {
+		codec = JSONCodec{}
+	}
+	s.codec = codec
 }
 
 func (s *ChannelStore) Register(path string, handlers ChannelHandlers) *Channel {
@@ -26,6 +31,7 @@ func (s *ChannelStore) Register(path string, handlers ChannelHandlers) *Channel 
 		handlers:    handlers,
 		subscribers: ChannelSubscribers{},
 		onError:     s.errorHandler,
+		codec:       s.codec,
 	}
 	channel.subscribers.init()
 	s.channels[path] = &channel

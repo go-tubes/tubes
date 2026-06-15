@@ -13,7 +13,7 @@ func TestChannelSubscribe(t *testing.T) {
 		store := ChannelStore{}
 		store.init(func(err *Error) {
 			t.Errorf("error was thrown: %s", err.Description)
-		})
+		}, JSONCodec{})
 		channel := store.Register(simplePath, ChannelHandlers{})
 
 		if result := channel.IsSubscribed(clientId, simplePath); result {
@@ -44,7 +44,7 @@ func TestChannelSubscribe(t *testing.T) {
 		store := ChannelStore{}
 		store.init(func(err *Error) {
 			t.Errorf("error was thrown: %s", err.Description)
-		})
+		}, JSONCodec{})
 		channel := store.Register(path, ChannelHandlers{
 			OnSubscribe: func(s *Context) {
 				subContext = s

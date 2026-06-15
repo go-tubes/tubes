@@ -80,7 +80,18 @@ func (context *Context) Set(key string, value interface{}) {
 	context.properties[key] = value
 }
 
+// codec returns the envelope Codec for this context's channel, falling back to
+// JSONCodec when no channel/codec is set (e.g. directly constructed contexts).
+func (context *Context) codec() Codec {
+	if context.Channel != nil && context.Channel.codec != nil {
+		return context.Channel.codec
+	}
+	return JSONCodec{}
+}
+
 func (context *Context) SendError(error *Error) *Error {
+	// The error itself is the application payload; it stays JSON-encoded and is
+	// then wrapped by the configured envelope codec.
 	data, err := json.Marshal(error)
 	if err != nil {
 		return NewError(context, ErrorSendingErrorFailed, "failed to send error to client", err)
@@ -90,7 +101,7 @@ func (context *Context) SendError(error *Error) *Error {
 		Channel: context.FullPath,
 		Payload: data,
 	}
-	data, err = json.Marshal(message)
+	data, err = context.codec().Marshal(&message)
 	if err != nil {
 		return NewError(context, ErrorSendingErrorFailed, "failed to send error to client", err)
 	}
@@ -107,7 +118,7 @@ func (context *Context) Send(payload []byte) *Error {
 		Channel: context.FullPath,
 		Payload: payload,
 	}
-	data, err := json.Marshal(message)
+	data, err := context.codec().Marshal(&message)
 	if err != nil {
 		return NewError(context, ErrorSendingMessageFailed, "failed to send error to client", err)
 	}

@@ -31,6 +31,7 @@ type Channel struct {
 	handlers    ChannelHandlers
 	subscribers ChannelSubscribers
 	onError     ErrorHandlerFunc
+	codec       Codec
 }
 
 // PathMatches returns true and the params of the channel subscription if the path matches the path of the Channel.
